@@ -9,15 +9,16 @@ let timeoutID;
 
 function displayTime() {
   const currentTime = new Date(Date.now() - startTime + stopTime);
-  const h = String(currentTime.getHours()-1).padStart(2, "0")
+  const h = String(currentTime.getHours()-1).padStart(2, "0");
   const m = String(currentTime.getMinutes()).padStart(2, "0");
-  const s = String(currentTime.getSeconds()).padStaart(2, "0");
+  const s = String(currentTime.getSeconds()).padStart(2, "0");
+  const ms = String(currentTime.getMilliseconds()).padStart(3, "0");
   
-  time.textContent = "${h}:${m}:${s}";
+  time.textContent = "${h}:${m}:${s}.${ms}";
   timeoutID = setTimeout(displayTime, 10);
 }
 
-startButton.addEventListener("click", function() {
+startButton.addEventListener("click", () => {
   startButton.disabled = true;
   stopButton.disabled = false;
   resetButton.disabled = true;
@@ -37,6 +38,6 @@ resetButton.addEventListener("click", function() {
   startButton.disabled = false;
   stopButton.disabled = true;
   resetButton.disabled = true;
-  time.textContent = "00:00:00"
+  time.textContent = "00:00:00.000"
   stopTime = 0;
 });
